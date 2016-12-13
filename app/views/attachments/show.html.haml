@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @attachment.file
+%p
+  %b Attachable:
+  = @attachment.attachable_id
+%p
+  %b Attachable type:
+  = @attachment.attachable_type
+
+= link_to 'Edit', edit_attachment_path(@attachment)
+\|
+= link_to 'Back', attachments_path

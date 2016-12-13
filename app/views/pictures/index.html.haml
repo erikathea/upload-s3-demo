@@ -1,0 +1,25 @@
+%h1 Listing pictures
+
+%table
+  %thead
+    %tr
+      %th Image
+      %th Imageable
+      %th Imagealbe type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @pictures.each do |picture|
+      %tr
+        %td= image_tag picture.image.url(:thumb)
+        %td= picture.imageable_id
+        %td= picture.imageable_type
+        %td= link_to 'Show', picture
+        %td= link_to 'Edit', edit_picture_path(picture)
+        %td= link_to 'Destroy', picture, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Picture', new_picture_path

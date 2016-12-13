@@ -42,4 +42,10 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+gem 'paperclip', '~> 5.0.0'
+gem 'aws-sdk'
+gem 's3_direct_upload'
 
+gem 'haml-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'rails_12factor', group: :production

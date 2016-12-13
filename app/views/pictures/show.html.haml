@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = image_tag @picture.image
+%p
+  %b Imageable:
+  = @picture.imageable_id
+%p
+  %b Imagealbe type:
+  = @picture.imageable_type
+
+= link_to 'Edit', edit_picture_path(@picture)
+\|
+= link_to 'Back', pictures_path
