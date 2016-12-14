@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   # TODO: refactor
   def create
     @post = Post.create(post_params)
-    success = add_attachments
+    success = update_attachments
     respond_to do |format|
       if success
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
