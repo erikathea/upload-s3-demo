@@ -1,15 +1,15 @@
-%p#notice= notice
+.row
+  - if notice
+    %p#notice.alert.alert-sucess.bg-success{ :role => 'alert' }
+      = notice
 
+.page-header
+  %h2= @post.title
 %p
-  %b Title:
-  = @post.title
-%p
-  %b Content:
   = @post.content
 
 = render 'pictures/list', pictures: @post.pictures
 = render 'attachments/list', attachments: @post.attachments
 
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
+= link_to 'Edit', edit_post_path(@post), class: 'btn btn-primary btn-block'
+= link_to 'Back', posts_path, class: 'btn btn-default btn-block'

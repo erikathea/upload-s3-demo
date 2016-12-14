@@ -1,8 +1,10 @@
-.pictures
+.pictures.row
   - pictures.each do |picture|
-    .image
-      = image_tag picture.image.url, class: 'thumb'
+    .image.col-xs-6.col-md-3
+      = image_tag picture.image.url, class: 'thumbnail'
       - if picture.imageable
         %span= picture.imageable.title
-      = link_to 'Show', picture
-      = link_to 'Remove', picture, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true }, class: 'remove'
+      %p
+        = link_to 'Show', picture
+        /|
+        = link_to 'Remove', picture, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true }, class: 'remove'

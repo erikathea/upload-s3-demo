@@ -1,7 +1,20 @@
-%h1 New post
+.row
+  %h2 Add Post
+  .col-md-9.col-sm-12
+    = render 'form'
+    = link_to 'Back', posts_path, class:'btn btn-block btn-default'
 
-= render 'form'
-= render 'pictures/form'
-= render 'attachments/form'
+  #accordion.col-md-3.col-sm-12.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+    .panel.panel-default
+      #images-title.panel-heading{:role => 'tab'}
+        %h4.panel-title
+          %a{ :role=>"button", "data-toggle"=>"collapse", "data-parent"=>"#accordion", :href=>"#image-panel", "aria-expanded"=>"true", "aria-controls"=>"image"} Images
+      #image-panel.panel-collapse.collape.in{:role =>"tabpanel", "aria-labelledby"=> "Files"}
+        .panel-body= render 'pictures/form'
 
-= link_to 'Back', posts_path
+    .panel.panel-default
+      #files-title.panel-heading{:role => 'tab'}
+        %h4.panel-title
+          %a{ :role=>"button", "data-toggle"=>"collapse", "data-parent"=>"#accordion", :href=>"#file-panel", "aria-expanded"=>"true", "aria-controls"=>"file-panel"} Files
+      #file-panel.panel-collapse.collape.in{:role =>"tabpanel", "aria-labelledby"=> "Files"}
+        .panel-body= render 'attachments/form'

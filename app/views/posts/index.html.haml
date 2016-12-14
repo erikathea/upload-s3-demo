@@ -1,23 +1,17 @@
-%h1 Listing posts
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th Content
-      %th
-      %th
-      %th
-
-  %tbody
-    - @posts.each do |post|
-      %tr
-        %td= post.title
-        %td= post.content
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Post', new_post_path
+.row
+  = link_to 'Add Post', new_post_path, class: 'btn btn-block btn-primary'
+.row.posts
+  - @posts.each do |post|
+    .col-sm6.col-md-4
+      .thumbnail
+        - if post.pictures.first
+          %img{ :src => post.pictures.first.image.url }
+        - else
+          %img{ :src => ''}
+        .caption
+          %h3
+            %a{ :href => post_path(post) }
+              = post.title
+          %p= post.content[1..50]
+          = link_to 'Edit', edit_post_path(post), class: 'btn btn-default btn-sm'
+          = link_to 'Remove', post, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true }, class: 'btn btn-default btn-sm remove'

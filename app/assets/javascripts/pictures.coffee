@@ -19,6 +19,6 @@ jQuery ->
     $('form #post-attachments').append "<input type='hidden' name='images[]' value='"+ data.responseJSON.id + "' />"
 
   $(".pictures").on "ajax:success", "div.image a.remove", (event, data, status, xhr) ->
-    $(event.target).parent().fadeOut "slow", () ->
+    $(event.target).parent().parent().fadeOut "slow", () ->
       $(this).remove()
   return

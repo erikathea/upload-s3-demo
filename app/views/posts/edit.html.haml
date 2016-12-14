@@ -1,13 +1,15 @@
-%h1 Editing post
+%h2
+  Update
+  = @post.title
 
 = render 'form'
+= link_to 'Back', posts_path, class: 'btn btn-block btn-default'
+
 = render 'pictures/list', pictures: @post.pictures
 
 = render 'pictures/form'
 
+%br
+
 = render 'attachments/list', attachments: @post.attachments
 = render 'attachments/form'
-
-= link_to 'Show', @post
-\|
-= link_to 'Back', posts_path

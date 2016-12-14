@@ -1,6 +1,10 @@
-.files
+.files.panel.panel-default
+  .panel-heading
+    %h4 Files
   - attachments.each do |attachment|
-    .attachment
-      = attachment.file_file_name
-      %td= link_to 'Open', attachment.file.url
-      %td= link_to 'Remove', attachment, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true}, class: 'remove'
+    %ul.attachment.list-group
+      %li.list-group-item
+        = attachment.file_file_name
+        .links
+          = link_to 'Open', attachment.file.url, class:'btn btn-link'
+          = link_to 'Remove', attachment, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true}, class: 'remove btn btn-link'

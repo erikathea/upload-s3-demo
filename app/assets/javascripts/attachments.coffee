@@ -19,7 +19,7 @@ jQuery ->
     $("#file-list").append "<p>" + data.responseJSON.url + "<p/>"
     $('form #post-attachments').append "<input type='hidden' name='attachments[]' value='"+ data.responseJSON.id + "' />"
 
-  $(".files").on "ajax:success", "div.attachment a.remove", (event, data, status, xhr) ->
-    $(event.target).parent().fadeOut "slow", () ->
+  $(".files").on "ajax:success", ".attachment a.remove", (event, data, status, xhr) ->
+    $(event.target).parent().parent().fadeOut "slow", () ->
       $(this).remove()
   return

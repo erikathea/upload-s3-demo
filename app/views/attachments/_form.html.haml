@@ -1,27 +1,24 @@
-- if @attachemnt && @attachment.errors.any?
-  #error_explanation
-    %h2= "#{pluralize(@attachment.errors.count, "error")} prohibited this attachment from being saved:"
-    %ul
-      - @attachment.errors.full_messages.each do |msg|
-        %li= msg
-%output
-  #file-list
-  #file-upload-container
+.wrapper
+  - if @attachemnt && @attachment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@attachment.errors.count, "error")} prohibited this attachment from being saved:"
+      %ul
+        - @attachment.errors.full_messages.each do |msg|
+          %li= msg
 
-= s3_uploader_form callback_url: attachments_url,
-  callback_param: "attachment[direct_upload_url]",
-  id: 'file-uploader',
-  data: { remote: true },
-  max_file_size: 10.megabytes do
-  .field
-    = label_tag :file
-    = file_field_tag :file
+  = s3_uploader_form callback_url: attachments_url,
+    callback_param: "attachment[direct_upload_url]",
+    id: 'file-uploader',
+    data: { remote: true },
+    max_file_size: 10.megabytes do
+    .field{:style => 'max-width: 210px'}
+      = label_tag :file
+      = file_field_tag :file
 
-%script#template-upload{:type => "text/x-tmpl"}
-  :cdata
-    <div id="file_{%=o.unique_id%}" class="upload">
-      <h5>{%=o.name%}</h5>
-      <div class="progress progress-striped active">
-        <div class="bar progress-bar" style="width: 0%"></div>
-      </div>
-    </div>
+  %output
+    #file-list
+    #file-upload-container{:style => 'max-width: 210px'}
+
+  %script#template-upload{:type => "text/x-tmpl"}
+    :cdata
+      <div id="file_{%=o.unique_id%}" class="upload"><h5>{%=o.name%}</h5><div class="progress progress-striped active"><div class="bar progress-bar" style="width: 0%; max-width: 50%"></div></div></div>
