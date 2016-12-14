@@ -1,6 +1,12 @@
 %h1 Editing post
 
 = render 'form'
+= render 'pictures/list', pictures: @post.pictures
+
+= render 'pictures/form'
+
+= render 'attachments/list', attachments: @post.attachments
+= render 'attachments/form'
 
 = link_to 'Show', @post
 \|

@@ -1,0 +1,8 @@
+.pictures
+  - pictures.each do |picture|
+    .image
+      = image_tag picture.image.url, class: 'thumb'
+      - if picture.imageable
+        %span= picture.imageable.title
+      = link_to 'Show', picture
+      = link_to 'Remove', picture, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true }, class: 'remove'

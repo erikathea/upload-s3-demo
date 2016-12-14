@@ -7,6 +7,9 @@
   %b Content:
   = @post.content
 
+= render 'pictures/list', pictures: @post.pictures
+= render 'attachments/list', attachments: @post.attachments
+
 = link_to 'Edit', edit_post_path(@post)
 \|
 = link_to 'Back', posts_path

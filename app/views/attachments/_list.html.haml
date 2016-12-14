@@ -1,0 +1,6 @@
+.files
+  - attachments.each do |attachment|
+    .attachment
+      = attachment.file_file_name
+      %td= link_to 'Open', attachment.file.url
+      %td= link_to 'Remove', attachment, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true}, class: 'remove'

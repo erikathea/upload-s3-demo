@@ -1,13 +1,26 @@
-= form_for @picture do |f|
-  - if @picture.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@picture.errors.count, "error")} prohibited this picture from being saved:"
-      %ul
-        - @picture.errors.full_messages.each do |msg|
-          %li= msg
+- if @picture && @picture.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@picture.errors.count, "error")} prohibited this picture from being saved:"
+    %ul
+      - @picture.errors.full_messages.each do |msg|
+        %li= msg
 
+%output
+  #image-list
+  #upload-container
+
+= s3_uploader_form callback_url: pictures_url,
+  callback_param: "picture[direct_upload_url]",
+  id: 'image-uploader',
+  max_file_size: 5.megabytes,
+  data: { remote: true } do
   .field
-    = f.label :image
-    = f.file_field :image
-  .actions
-    = f.submit 'Save'
+    = label_tag :image
+    = file_field_tag :file
+
+%script#template-upload{:type => "text/x-tmpl"}
+  :cdata
+    <div id="file_{%=o.unique_id%}" class="upload">
+    <h5>{%=o.name%}</h5>
+    <div class="progress progress-striped active"><div class="bar progress-bar" style="width: 0%"></div></div>
+    </div>

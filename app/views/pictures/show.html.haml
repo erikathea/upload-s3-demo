@@ -1,15 +1,11 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = image_tag @picture.image
-%p
-  %b Imageable:
-  = @picture.imageable_id
-%p
-  %b Imagealbe type:
-  = @picture.imageable_type
+%p= image_tag @picture.image
 
-= link_to 'Edit', edit_picture_path(@picture)
-\|
-= link_to 'Back', pictures_path
+- if @picture.imageable
+  %p
+    Post:
+    = link_to @picture.imageable.title, @picture.imageable
+  = link_to 'Back', @picture.imageable
+- else
+  = link_to 'Back', pictures_path

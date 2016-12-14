@@ -1,13 +1,27 @@
-= form_for @attachment do |f|
-  - if @attachment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@attachment.errors.count, "error")} prohibited this attachment from being saved:"
-      %ul
-        - @attachment.errors.full_messages.each do |msg|
-          %li= msg
+- if @attachemnt && @attachment.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@attachment.errors.count, "error")} prohibited this attachment from being saved:"
+    %ul
+      - @attachment.errors.full_messages.each do |msg|
+        %li= msg
+%output
+  #file-list
+  #file-upload-container
 
+= s3_uploader_form callback_url: attachments_url,
+  callback_param: "attachment[direct_upload_url]",
+  id: 'file-uploader',
+  data: { remote: true },
+  max_file_size: 10.megabytes do
   .field
-    = f.label :file
-    = f.file_field :file
-  .actions
-    = f.submit 'Save'
+    = label_tag :file
+    = file_field_tag :file
+
+%script#template-upload{:type => "text/x-tmpl"}
+  :cdata
+    <div id="file_{%=o.unique_id%}" class="upload">
+      <h5>{%=o.name%}</h5>
+      <div class="progress progress-striped active">
+        <div class="bar progress-bar" style="width: 0%"></div>
+      </div>
+    </div>

@@ -14,3 +14,10 @@
     = f.text_field :content
   .actions
     = f.submit 'Save'
+
+  #post-attachments
+  - @post.pictures.each do |picture|
+    = hidden_field_tag 'images[]', picture.id
+  - @post.attachments.each do |attachment|
+    = hidden_field_tag 'attachments[]', attachment.id
+
