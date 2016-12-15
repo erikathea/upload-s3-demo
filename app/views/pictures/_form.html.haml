@@ -12,7 +12,7 @@
     max_file_size: 5.megabytes,
     data: { remote: true } do
     .field{:style => 'max-width: 210px'}
-      = label_tag :image
+      = label_tag 'Image (.jpg/.jpeg/.gif/.png)'
       = file_field_tag :file, id: 'image'
       %button.submit.btn.btn-default Upload
 

@@ -1,10 +1,13 @@
 jQuery ->
+  fileTypes = ['jpg', 'jpeg', 'png', 'gif']
+
   $("#image-uploader").s3Uploader
     progress_bar_target: $('#upload-container')
     remove_failed_progress_bar: true
     click_submit_target: $('#image-uploader button.submit')
     before_add: (file) ->
-      if !(file.type.match(/image.*/))
+      extension = file.type.split('/')[1]
+      if !(fileTypes.indexOf(extension))
         alert 'File not supported!'
         false
       else if (file.size > 5000000)
@@ -21,9 +24,7 @@ jQuery ->
     $('form #post-attachments').append "<input type='hidden' name='images[]' value='"+ data.responseJSON.id + "' />"
     $('#upload-container').html ''
 
-  fileTypes = ['jpg', 'jpeg', 'pjpeg', 'png', 'gif']
-
-  $('input:file').change (evt) ->
+  $('#image-uploader input:file').change (evt) ->
     parentEl = $(this).parent()
     tgt = evt.target or window.event.srcElement
     files = tgt.files

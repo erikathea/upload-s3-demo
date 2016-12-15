@@ -1,7 +1,7 @@
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
 
-  CONTENT_TYPE = ['image/jpeg', 'image/ppg', 'image/gif', 'image/png']
+  CONTENT_TYPE = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png']
   IMAGE_SIZE = 5.megabytes
 
   has_attached_file :image
