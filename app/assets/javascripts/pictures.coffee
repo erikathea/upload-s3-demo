@@ -1,5 +1,5 @@
 jQuery ->
-  $("#image-uploader").S3Uploader
+  $("#image-uploader").s3Uploader
     progress_bar_target: $('#upload-container')
     remove_failed_progress_bar: true
     click_submit_target: $('#image-uploader button.submit')
@@ -35,7 +35,7 @@ jQuery ->
       fr.onload = (e) ->
         success = fileTypes.indexOf(extension) > -1
         if success
-          $('#upload-container').html '<img src="' + fr.result + '" class="thumb"/>'
+          $('#upload-container').append '<img src="' + fr.result + '" class="thumb"/>'
         return
 
       fr.readAsDataURL files[0]

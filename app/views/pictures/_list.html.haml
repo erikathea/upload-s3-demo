@@ -2,6 +2,7 @@
   - pictures.each do |picture|
     .image.col-xs-6.col-md-3
       = image_tag picture.image.url, class: 'thumbnail'
+      %p= picture.name
       - if picture.imageable
         %span= picture.imageable.title
       %p

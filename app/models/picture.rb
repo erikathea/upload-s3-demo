@@ -9,11 +9,9 @@ class Picture < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_presence :image
 
-  def s3_key
-    "uploads/#{stamp}/#{image_file_name}"
-  end
+  def name
+    return image_file_name if image_file_name.length <= 25
 
-  def s3_obj
-    S3_BUCKET.object(key)
+    image_file_name[0..20] + '...' + image_file_name[-4..-1]
   end
 end

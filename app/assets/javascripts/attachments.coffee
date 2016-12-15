@@ -1,5 +1,5 @@
 jQuery ->
-  $("#file-uploader").S3Uploader
+  $("#file-uploader").s3Uploader
     progress_bar_target: $('#file-upload-container')
     before_add: (file) ->
       content_type = /text.*|image.*|video.*|audio.*|.*pdf|.*xml|.*epub/
