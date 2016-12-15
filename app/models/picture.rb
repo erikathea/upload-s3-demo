@@ -1,12 +1,14 @@
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
 
+  CONTENT_TYPE = ['image/jpeg', 'image/ppg', 'image/gif', 'image/png']
+  IMAGE_SIZE = 5.megabytes
+
   has_attached_file :image
   validates_attachment_content_type :image,
-                                    :content_type => ['image/jpeg', 'image/ppg',
-                                                      'image/gif', 'image/png'],
+                                    :content_type => CONTENT_TYPE,
                                     :message      => 'has to be in a proper format'
-  validates_attachment_size :image, :less_than => 5.megabytes
+  validates_attachment_size :image, :less_than => IMAGE_SIZE
   validates_attachment_presence :image
 
   def name
