@@ -1,4 +1,6 @@
-%h1 Pictures
-
+.row
+  %h2 Images
+  .links
+    = link_to 'Home', root_url, class: 'btn btn-default'
+%br
 = render "list", pictures: @pictures
-//= link_to 'New Picture', new_picture_path

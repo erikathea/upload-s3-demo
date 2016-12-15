@@ -1,7 +1,7 @@
 .pictures.row
   - pictures.each do |picture|
     .image.col-xs-6.col-md-3
-      = image_tag picture.image.url, class: 'thumbnail'
+      = image_tag picture.image.url, class: 'thumbnail height-200'
       %p= picture.name
       - if picture.imageable
         %span= picture.imageable.title

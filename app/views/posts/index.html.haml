@@ -1,17 +1,24 @@
 .row
-  = link_to 'Add Post', new_post_path, class: 'btn btn-block btn-primary'
+  %h2
+    Sample Rails Project
+  .links
+    = link_to 'Add Post', new_post_path, class: 'btn btn-primary'
+    = link_to 'Images', pictures_path, class: 'btn btn-default'
+    = link_to 'Files', attachments_path, class: 'btn btn-default'
+%br
 .row.posts
   - @posts.each do |post|
     .col-sm6.col-md-4
-      .thumbnail
-        - if post.pictures.first
-          %img{ :src => post.pictures.first.image.url }
-        - else
-          %img{ :src => ''}
-        .caption
+      .panel.panel-default
+        .panel-body
+          - if post.pictures.first
+            %img.clip.thumbnail{ :src => post.pictures.first.image.url }
+          - else
+            %img{ :src => '' }
+        .panel-footer.caption
           %h3
             %a{ :href => post_path(post) }
               = post.title
-          %p= post.content[1..50]
+          %p= post.content_preview
           = link_to 'Edit', edit_post_path(post), class: 'btn btn-default btn-sm'
           = link_to 'Remove', post, :method => :delete, :data => { :confirm => 'Are you sure?', :remote => true }, class: 'btn btn-default btn-sm remove'
